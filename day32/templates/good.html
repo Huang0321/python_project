@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for user in users %}
+    姓名：{{ user.u_name }}
+    <br>
+        {% for good in goods %}
+            商品:{{ good.g_name }}
+            <br>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

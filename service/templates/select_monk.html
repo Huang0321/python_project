@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>select_monk</title>
+</head>
+<body>
+    {% for monk in monks %}
+        <a href="../add_monk/">name: {{ monk.monk_name }}</a>
+        sex: {{ monk.monk_sex }}
+        birth: {{ monk.monk_birth }}
+        tel: {{ monk.monk_tel }}
+    {% endfor %}
+</body>
+</html>
