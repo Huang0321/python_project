@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    学生信息
+{% endblock %}
+
+{% block contain %}
+    姓名: {{ stu.stu_name }} <br>
+    {% if stu.stu_sex %}
+    性别: 男 <br>
+    {% else %}
+    性别: 女 <br>
+    {% endif %}
+    生日: {{ stu.stu_birth }} <br>
+    身高: {{ stu.stu_height }} <br>
+    电话: {{ stu.stu_tel }} <br>
+    电子邮件: {{ stu.stu_email }} <br>
+    班级: {{ stu.stu_grade }} <br>
+    兴趣: {{ stu.stu_interest }}
+{% endblock %}

@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+
     {% for stu in stus %}
         计数从0开始：{{ forloop.counter0 }} &nbsp;&nbsp;
         计数从1开始:{{ forloop.counter }} &nbsp;&nbsp;
@@ -12,6 +13,7 @@
         计数从最后开始到0停:{{ forloop.revcounter0 }} &nbsp;&nbsp;
         {% ifequal forloop.counter 3 %}
         <h1>姓名: {{ stu.stu_name }}</h1>
+          {# 姓名: {{ stu.stu_name | upper }} upper变成大写, lower小写 #}
         {% endifequal %}
         性别:
         {% if stu.stu_sex  %}
@@ -19,10 +21,35 @@
         {% else %}
             女
         {% endif %}
-        生日: {{ stu.stu_birth }}
-        创建时间: {{ stu.stu_create_time }}
+        {# 单行注释 #}
+        生日: {{ stu.stu_birth | date:'y-m-d'}}
+        {% comment %} 多行注释
+       生日: {{ stu.stu_birth | date:'y-m-d h:m:s'}}
+        生日: {{ stu.stu_birth | date:'Y-M-D'}}
+        {% endcomment %}
+        创建时间: {{ stu.stu_create_time| date:'Y-m-d'}}
         语文成绩: {{ stu.stu_yuwen | add:10}}
+        乘以10倍的语文成绩： {% widthratio stu.stu_yuwen 1 10 %}
+        {# {% widthratio 数值 分子 分母 %} #}
         数学成绩: {{ stu.stu_shuxue | add:-10}}
+        语文成绩整除2:{{ stu.stu_yuwen | divisibleby:2 }} 整除返回true
+
+        {% comment %}
+        判断id是否是偶数：
+        {% if stu.id | divisibleby:2 %}
+            id是整数
+        {% else %}
+            id是奇数
+        {% endif %}
+        {% endcomment %}class Student(models.Model):
+
+    s_name = models.CharField(max_length=10)
+    s_age = models.IntegerField()
+    g_id = models.IntegerField(null=True)
+
+    class Meta:
+        db_table = 'student'
+
         <br>
     {% empty %}
      没有学生信息

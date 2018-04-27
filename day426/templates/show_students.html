@@ -1,0 +1,10 @@
+{% block title %}
+    学生表
+{% endblock %}
+
+{% block contain %}
+    {% for stu in stus %}
+        学生:{{ stu.s_name }}
+        <a href="/student/delstu/?stu_id={{ stu.id }}">删除</a>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    基本信息
+{% endblock %}
+
+{% block contain %}
+    <form action="" method="post">
+        姓名: <input type="text" name="name"> <br>
+        性别: <input type="text" name="sex"> <br>
+        生日: <input type="date" name="birth"> <br>
+        身高: <input type="text" name="height"> <br>
+        <<input type='submit' value="下一页" >
+    </form>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.db.models import F
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from grade.models import Grade
 
@@ -40,7 +40,7 @@ def selStu(request):
     # 通过 知道学生的地址来找学生的姓名
     # stus = StudentInfo.objects.filter(stu_addr__contains='成都锦江区')
     # stu = stus[0]
-    # selstu = stu.stust
+    # selstu = stu.stu
 
     st = Student.objects.filter(stu_name='达叔')
     stu = st.first()
@@ -49,7 +49,6 @@ def selStu(request):
     # selstu = stu.StudenInfo.objects
     # 第二种 方法 关联
     selstu = stu.stu_info
-
 
 
     return render(request, 'selstu.html', {'selstu':selstu})
@@ -101,3 +100,12 @@ def allStu(request):
 
     stus = Student.objects.all()
     return render(request, 'all_stus.html', {'stus':stus})
+
+
+def delStu(request):
+    stu_id = request.GET.get('stu_id')
+    Student.objects.filter(id=stu_id).delete()
+
+    return HttpResponseRedirect(
+        'g:'
+    )
