@@ -5,9 +5,11 @@
     <title>表单提交</title>
 </head>
 <body>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <input type="hidden" value="{{ stu_id }}" name="stu_id">
-    地址：<input type="text" name="addr">
+    地址: <input type="text" name="addr">
+    头像: <input type="file" name="img">
     <input type="submit" value="提交">
 
 </form>

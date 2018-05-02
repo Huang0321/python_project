@@ -6,11 +6,12 @@
 </head>
 <body>
 {% for stuinfo in stuinfos %}
-    姓名: {{ stuinfo.s.s_name }}
-    电话: {{ stuinfo.s.s_tel }}
-    地址: {{ stuinfo.i_addr }}
+    姓名: {{ stuinfo.s.s_name }} <br>
+    电话: {{ stuinfo.s.s_tel }} <br>
+    地址: {{ stuinfo.i_addr }} <br>
+    头像: <img src="/media/{{ stuinfo.i_unage }}" style='width:100px;height:100px'> <br>
 {% endfor %}
-
+一共添加了 {{ num }} 个学生
 <h4>-----------我是分割线----------------</h4>
 
 <a href="{% url 's:add' %}">添加学生</a>

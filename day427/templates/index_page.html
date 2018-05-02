@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>所有学生信息</title>
+</head>
+<body>
+{% for stu in stus %}
+    姓名: {{ stu.s_name }} <br>
+    电话: {{ stu.s_tel }} <br>
+    地址: {{ stu.studentinfo_set.first.i_addr }} <br>
+    头像: <img src="/media/{{ stu.studentinfo_set.first.i_unage }}" style='width:100px;height:100px'>
+
+    <br>
+
+{% endfor %}
+
+{% for i in stus.paginator.page_range %}
+    <a href="/stu/stupage/?page_id={{ i }}"> {{ i }} </a>
+{% endfor %}
+
+<h5>
+    {% if stus.has_previous %}
+        <a href="/stu/stupage/?page_id={{ stus.previous_page_number }}">上一页</a>
+    {% endif %}
+        第 {{ stus.number }} 页
+
+    {% if stus.has_next %}
+        <a href="/stu/stupage/?page_id={{ stus.next_page_number }}">下一页</a>
+    {% endif %}
+</h5>
+
+
+
+<h4>一共{{ stus.paginator.num_pages }}页/一共{{ stus.paginator.count }}条</h4>
+
+
+<h4>-----------我是分割线----------------</h4>
+
+<a href="{% url 's:add' %}">添加学生</a>
+</body>
+</html>
