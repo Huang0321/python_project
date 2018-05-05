@@ -2,7 +2,10 @@
 import random
 import time
 
+from django.contrib import auth
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.models import User
+
 from uauth.models import Users
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
@@ -72,3 +75,49 @@ def logout(request):
         response = HttpResponse('/uauth/login/')
         response.delete_cookie('ticket')
         return response
+
+
+def djlogin(request):
+
+    if request.method == 'GET':
+
+        return render(request, 'login.html')
+
+    if request.method == 'POST':
+
+        name = request.POST.get('name')
+        password = request.POST.get('password')
+
+        # 验证用户名和密码, 通过的话，返回user对象
+        user = auth.authenticate(username=name, password=password)
+
+        if user:
+            # 验证成功，登录
+            auth.login(request, user)
+            return HttpResponseRedirect('/stu/index/')
+        else:
+            return render(request, 'index.html')
+
+
+def djregist(request):
+
+    if request.method == 'GET':
+        return render(request, 'day6_regist.html')
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        password = request.POST.get('password')
+
+        User.objects.create_user(username=name, password=password)
+        return HttpResponseRedirect('/uauth/dj_login/')
+
+
+def djlogout(request):
+
+    if request.method == 'GET':
+
+        auth.logout(request)
+        return HttpResponseRedirect('/uauth/djlogin/')
+
+
+

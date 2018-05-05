@@ -1,0 +1,10 @@
+20 D:/python_virtual_project/day427\stu\views.py index views 1525333441.0991952 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525333498.9735053 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525334004.9834476 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525334017.8201818 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525334061.1356592 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525334276.5999832 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525334286.4295452 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525334466.7148569 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525334474.3812957 Getting studentinfo success
+INFO D:/python_virtual_project/day427\stu\views.py index views 1525337384.2807324 Getting studentinfo success

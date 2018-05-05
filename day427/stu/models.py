@@ -22,8 +22,10 @@ class StudentInfo(models.Model):
         db_table = 'student_info'
 
 
-class VisitorStatic(models.Model):
-    vis_num = models.IntegerField(max_length=10, default=0)
+class Visit(models.Model):
+
+    v_url = models.CharField(max_length=30)
+    v_times = models.IntegerField()
 
     class Meta:
-        db_table = 'vis_static'
+        db_table = 'visit_times'

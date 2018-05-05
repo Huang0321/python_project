@@ -3,9 +3,15 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 # Create your views here.
-from stu.models import Student, StudentInfo, VisitorStatic
+from stu.models import Student, StudentInfo
 from uauth.models import Users
 
+import logging
+
+from rest_framework import mixins, viewsets
+from stu.serializers import StudentSerializer
+
+logger = logging.getLogger('stu')
 
 
 def index(request):
@@ -14,8 +20,9 @@ def index(request):
 
         # 获取所有学生信息
         stuinfos = StudentInfo.objects.all()
-        num = VisitorStatic.objects.get(id=1).vis_num
-        return render(request, 'index.html', {'stuinfos': stuinfos, 'num': num})
+        # num = VisitorStatic.objects.get(id=1).vis_num
+        logger.info('Getting studentinfo success')
+        return render(request, 'index.html', {'stuinfos': stuinfos})
         # else:ticket = request.COOKIES.get('ticket')
         # if not ticket:
         #     return HttpResponseRedirect('/uauth/login/')
@@ -63,12 +70,12 @@ def addStuInfo(request, stu_id):
             i_addr=addr,
             i_unage=img,
         )
-        if VisitorStatic.objects.get(id=1):
-            VisitorStatic.objects.get(id=1).vis_num += 1
-        else:
-            VisitorStatic.objects.create(
-                vis_num=1
-            )
+        # if VisitorStatic.objects.get(id=1):
+        #     VisitorStatic.objects.get(id=1).vis_num += 1
+        # else:
+        #     VisitorStatic.objects.create(
+        #         vis_num=1
+        #     )
 
         return HttpResponseRedirect('/stu/index/')
 
@@ -80,3 +87,24 @@ def stuPage(request):
         paginator = Paginator(stus, 3)
         page = paginator.page(int(page_id))   # 注意是整型
         return render(request, 'index_page.html', {'stus': page})
+
+
+class StudentEdit(mixins.ListModelMixin,
+                  mixins.RetrieveModelMixin,
+                  mixins.UpdateModelMixin,
+                  mixins.DestroyModelMixin,
+                  mixins.CreateModelMixin,
+                  viewsets.GenericViewSet):
+
+    # 查询所有信息
+    queryset = Student.objects.all()
+    # 序列化
+    serializer_class = StudentSerializer
+
+    # def get_queryset(self):
+    #     pass
+
+def showStus(request):
+
+    if request.method == 'GET':
+        return render(request, 'show.html')

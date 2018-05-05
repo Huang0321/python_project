@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PlayerInfo</title>
+    <script>
+        function showXml(){
+            var xmlhttp;
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                xmlhttp.open('GET', "/nba/player/1/", true);
+                xmlhttp.send();
+                if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                    document.getElementById('data').innerHTML=xmlhttp.responseText;
+                }
+            };
+
+        }
+    </script>
+</head>
+<body>
+    <form action="" method="get">
+        <button type="submit" onclick="showXml()">
+            获取信息
+        </button>
+        <div id="data"></div>
+    </form>
+</body>
+</html>
