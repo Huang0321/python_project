@@ -10,6 +10,8 @@ import logging
 
 from rest_framework import mixins, viewsets
 from stu.serializers import StudentSerializer
+from stu.filters import StuFilter
+from rest_framework.response import Response
 
 logger = logging.getLogger('stu')
 
@@ -101,10 +103,44 @@ class StudentEdit(mixins.ListModelMixin,
     # 序列化
     serializer_class = StudentSerializer
 
-    # def get_queryset(self):
-    #     pass
+    # 过滤
+    filter_class = StuFilter
+
+    # get 到上面的 queryset
+    def get_queryset(self):
+        # 对结果进行排序
+        query = self.queryset
+        return query.order_by('-id')
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.s_delete = 1
+        instance.save()
+        return Response({'msg': '删除成功', 'code': 200})
+
 
 def showStus(request):
 
     if request.method == 'GET':
         return render(request, 'show.html')
+
+
+def backStu(request):
+
+    if request.method == 'GET':
+        # 过滤语文成绩不及格的学生
+        stu1 = Student.objects.filter(s_yuwen__lt=60)
+        # 过滤语文成绩大于80 小于90的学生
+        stu2 = Student.objects.filter(s_yuwen__lt=90, s_yuwen__gt=80)
+        # 过滤状态停级的学生
+        stu3 = Student.objects.filter(s_stutaus='NEXT_SCH')
+        # 过滤操作时间在 2015年1月1日 至 2018年12月31日的学生
+        stu4 = Student.objects.filter(S_operate_time__gt='2015-01-01 00:00:00',
+                                      S_operate_time__lt='2018-12-31 59:59:59')
+        # 过滤操作时间在2015年1月1日 至 2018年12月31日 语文大于60分 语文小于90分的学生
+        stu5 = Student.objects.filter(S_operate_time__gt='2015-01-01 00:00:00',
+                                      S_operate_time__lt='2018-12-31 00:00:00',
+                                      s_yuwen__gt=60,
+                                      s_yuwen__lt=90)
+
+        return render(request, 'back_student.html')

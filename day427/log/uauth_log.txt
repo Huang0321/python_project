@@ -71,3 +71,5 @@
 40 VisitTimesMiddleware 1525431105.4515636 Visit matching query does not exist.
 40 VisitTimesMiddleware 1525431126.1507473 Visit matching query does not exist.
 40 VisitTimesMiddleware 1525431182.0149426 Visit matching query does not exist.
+40 VisitTimesMiddleware 1525483382.516721 Visit matching query does not exist.
+40 VisitTimesMiddleware 1525485688.6936269 Visit matching query does not exist.

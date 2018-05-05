@@ -14,7 +14,9 @@ urlpatterns = [
     url(r'addstu/', views.addStu, name='add'),
     url(r'addstuinfo/(?P<stu_id>\d+)/', views.addStuInfo, name='info'),
     url(r'stupage/', views.stuPage),
-    url(r'showstu/', views.showStus)
+    url(r'showstu/', views.showStus),
+    # 作业
+    url(r'^backStu/', views.backStu)
 ]
 
 urlpatterns += router.urls

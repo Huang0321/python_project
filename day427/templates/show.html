@@ -9,7 +9,7 @@
            $('#show').click(function(){
                $.get('/stu/student/', function(msg) {
                    s = '<table><tr><td>ID</td><td>姓名</td><td>地址</td><td>操作</td></tr>';
-                   msg_data = msg['data'];
+                   msg_data = msg['data']['results'];
                    for(var i=0; i<msg_data.length; i++){
                        s += '<tr><td>'+ msg_data[i].id +'</td>\
                        <td>' + msg_data[i].s_name + '</td><td>'

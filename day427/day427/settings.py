@@ -198,7 +198,15 @@ LOGGING = {
 # 配置restful api返回结果
 
 REST_FRAMEWORK = {
+    # 分页
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
+    # 设置搜索
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',
+                                'rest_framework.filters.SearchFilter'),
+    # 返回结构自定义
     'DEFAULT_RENDERER_CLASSES': (
         'utils.RenderResponse.CustomJsonRenderer',
     )
 }
+

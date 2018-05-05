@@ -16,15 +16,16 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = ['id', 's_name', 's_tel']
+        fields = ['id', 's_name', 's_tel', 's_yuwen', 'S_operate_time', 's_status']
 
     def to_representation(self, instance):
 
-       data = super().to_representation(instance)
+        data = super().to_representation(instance)
 
-       try:
+        try:
             data['s_addr'] = instance.studentinfo_set.get().i_addr
-       except Exception as e:
-           data['s_addr'] = ''
+        except Exception as e:
+            data['s_addr'] = ''
+        data['s_status'] = dict(Student.STATUS)[data['s_status']]
 
-       return data
+        return data
