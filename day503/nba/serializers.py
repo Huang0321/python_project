@@ -12,7 +12,7 @@ class PlayerSerializers(serializers.ModelSerializer):
 
     def to_representation(self, instance):
 
-        data = super().to_representation(instance)
+        data = Super().to_representation(instance)
         print(type(instance))
         # try:
         data['team'] = instance.team_set.get().t_name

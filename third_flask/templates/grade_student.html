@@ -1,0 +1,16 @@
+{% extends 'base_main.html' %}
+
+
+{% block title %}
+    通过班级找学生
+{% endblock %}
+
+{% block content %}
+    {% from 'functions.html' import show_stu %}
+    班级id: {{ grade.g_id }} <br>
+    班级名称: {{ grade.g_name }} <br>
+    学生: <br>
+    {% for stu in stus %}
+    {{ show_stu(stu.s_name, stu.s_id) }}
+    {% endfor %}
+{% endblock %}

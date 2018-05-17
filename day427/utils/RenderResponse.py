@@ -27,7 +27,7 @@ class CustomJsonRenderer(JSONRenderer):
                 'msg': msg,
                 'data': data
             }
-            return super().render(res, accepted_media_type,renderer_context)
+            return Super().render(res, accepted_media_type,renderer_context)
         else:
-            return super().render(data, accepted_media_type, renderer_context)
+            return Super().render(data, accepted_media_type, renderer_context)
 

@@ -1,0 +1,39 @@
+
+{% extends 'base_main.html' %}
+
+{% block title %} 分数页面 {% endblock %}
+
+{% block header %}
+    <ul>
+        {% for score in scores %}
+            {% if loop.first %}
+                <li style="color:red">{{ loop.revindex }}:{{ loop.index }}:{{ score }}</li>
+            {% elif loop.last %}
+                 <li style="color:green">{{ loop.index }}:{{ loop.revindex }}:{{ score }}</li>
+            {% else %}
+                <li>{{ score }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <ur>
+        <li>{{ content_h2 }}</li>
+        <li>{{ content_h2 | safe }}</li>
+        <li>{{ content_h2 | striptags }}</li>
+        <li>{{ content_h2 | length }}</li>
+        <li>{{ content_h2 | trim | length}}</li>
+    </ur>
+
+    <ur>
+        {% for i in config %}
+            <li>{{ i | first }}, {{ i | last }}, {{ i | lower }}， {{ i | upper }}, {{ i | capitalize }}</li>
+        {% endfor %}
+    </ur>
+
+    {% from 'functions.html' import show_goods %}
+    {% from 'functions.html' import say %}
+    {{ say() }}
+
+    {{ show_goods('haha', 'wakaka') }}
+{% endblock %}

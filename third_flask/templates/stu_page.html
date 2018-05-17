@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base_main.html' %}
+
+
+{% block title %}
+    分页信息
+{% endblock %}
+
+
+{% block content %}
+    <h2>学生信息</h2>
+    {% for stu in stus %}
+    {% from 'functions.html' import show_stu %}
+    {{ show_stu(stu.s_name, stu.s_age) }}
+    {% endfor %}
+    <br>
+    总页数: {{ paginate.pages }} <br>
+    {% if paginate.has_prev %}
+    上一页:  <a href="/stu/stupage/?page={{ paginate.prev_num }}"> {{ paginate.prev_num }} </a> <br>
+    {% endif %}
+    当前页数: {{ paginate.page }} <br>
+
+    {% if paginate.has_next %}
+    下一页: <a href="/stu/stupage/?page={{ paginate.next_num }}"> {{ paginate.next_num }} </a> <br>
+    {% endif %}
+
+
+    当前页有{{ paginate.per_page }}条数据<br>
+    总共有{{ paginate.total }}条数据 <br>
+
+
+    页码: {% for i in paginate.iter_pages() %}
+    {% if paginate.page==loop.index %}
+    {{ i }}
+    {% else %}
+    <a href="/stu/stupage/?page={{ i }}">{{ i }}</a>
+    {% endif %}
+    {% endfor %}
+
+{% endblock %}

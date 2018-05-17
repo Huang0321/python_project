@@ -20,7 +20,7 @@ class StudentSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
 
-        data = super().to_representation(instance)
+        data = Super().to_representation(instance)
 
         try:
             data['s_addr'] = instance.studentinfo_set.get().i_addr

@@ -1,0 +1,14 @@
+{% extends 'base_main.html' %}
+
+
+{% block title %}
+    通过学生找班级
+{% endblock %}
+
+{% block content %}
+    {% from 'functions.html' import show_stu %}
+    {{ show_stu(stu.s_name, stu.s_age) }} <br>
+    所在班级: {{ grade.g_name }} <br>
+    班级id: {{ grade.g_id }} <br>
+    班级标语: {{ grade.g_desc }}
+{% endblock %}

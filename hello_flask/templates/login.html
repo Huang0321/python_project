@@ -1,0 +1,16 @@
+{% extends base.html %}
+
+{% block header %}
+    {% if username %}
+{% endblock %}
+
+{% block main %}
+        登录成功 <br>
+        欢迎： {{ username }}
+    {% endif %}
+    <form action="" method="post">
+        用户：<input type="text" placehoder="请输入用户名" name="username">
+        密码：<input type="text" placeholder="请输入密码" name="password">
+        <input type="submit" value="提交">
+    </form>
+{% endblock %}

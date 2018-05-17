@@ -1,0 +1,20 @@
+{% extends 'base_main.html' %}
+
+{% block title %}
+    学生列表
+{% endblock %}
+
+
+{%  block content %}
+    {% from 'functions.html' import show_goods %}
+    <ul>
+        {% for stu in stus %}
+           {{ show_goods(stu.s_name, stu.s_age) }}
+        {% endfor %}
+
+    </ul>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base_main.html' %}
+
+
+{% block content %}
+
+    {% for stu in stus %}
+        {% from 'functions.html' import show_stu %}
+        {{ show_stu(stu.s_name, stu.s_age) }}
+    {% endfor %}
+
+{% endblock %}
